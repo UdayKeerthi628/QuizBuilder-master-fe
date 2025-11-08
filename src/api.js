@@ -1,8 +1,16 @@
 import axios from "axios";
-/*
 
-const USER_API_URL = "http://localhost:8080/api/users";
-const QUIZ_API_URL = "http://localhost:8080/api/quizzes";
+// ✅ Dynamically detect backend URL
+// Local Dev: uses VITE_BACKEND_URL from .env (like http://localhost:9096)
+// Docker/Kubernetes: uses REACT_APP_BACKEND_URL from build args (like http://backend:9096)
+const BASE_URL =
+  import.meta.env.VITE_BACKEND_URL ||
+  import.meta.env.REACT_APP_BACKEND_URL ||
+  "http://localhost:9096";
+
+// Define API endpoints
+const USER_API_URL = `${BASE_URL}/api/users`;
+const QUIZ_API_URL = `${BASE_URL}/api/quizzes`;
 
 /* ---------------- USER APIs ---------------- */
 
